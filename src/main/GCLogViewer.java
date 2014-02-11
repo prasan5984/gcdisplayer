@@ -1,4 +1,4 @@
-package src.main;
+package main;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,10 +12,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import src.collectors.CollectorLogReader;
-import src.collectors.SerialGCLogReader;
-import src.displayer.LogDisplayer;
-import src.displayer.XlsDisplayer;
+import collectors.CollectorLogReader;
+
+import collectors.ParallelGCReader;
+import collectors.SerialGCLogReader;
+import displayer.LogDisplayer;
+import displayer.XlsDisplayer;
 
 public class GCLogViewer
 {
@@ -25,6 +27,11 @@ public class GCLogViewer
 	private static void initializeCollectors()
 	{
 		collectorReaders.add( new SerialGCLogReader() );
+		collectorReaders.add( new ParallelGCReader() );
+
+		for ( CollectorLogReader reader : collectorReaders )
+			reader.initialize();
+
 	}
 
 	private String readLine()
@@ -107,11 +114,11 @@ public class GCLogViewer
 			e.printStackTrace();
 		}
 
-		ArrayList< String > fileLines = new ArrayList<String> (Arrays.asList( fileContent.split( "(\r\n|\n\r|\r|\n)" ) ));
+		ArrayList< String > fileLines = new ArrayList< String >( Arrays.asList( fileContent.split( "(\r\n|\n\r|\r|\n)" ) ) );
 		ArrayList< String > sampleLines;
 
 		if ( fileLines.size() > 10 )
-			sampleLines = new ArrayList<String> (fileLines.subList( 0, 10 ));
+			sampleLines = new ArrayList< String >( fileLines.subList( 0, 10 ) );
 		else
 			sampleLines = fileLines;
 
@@ -131,8 +138,7 @@ public class GCLogViewer
 			System.out.println( "Unable to detect the collector." );
 			reader = chooseReader();
 		}
-		
-		
+
 		for ( String line : fileLines )
 		{
 			reader.setValues( line );
