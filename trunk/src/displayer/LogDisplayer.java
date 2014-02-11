@@ -1,8 +1,9 @@
-package src.displayer;
+package displayer;
 
 import java.util.ArrayList;
 
-import src.data_structure.Field;
+import data_structure.Field;
+
 
 public interface LogDisplayer
 {

@@ -1,4 +1,4 @@
-package src.displayer;
+package displayer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,9 +16,10 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.util.CellRangeAddress;
 
-import src.data_structure.DataStructureException;
-import src.data_structure.Field;
-import src.data_structure.GCLogDataStructure;
+import data_structure.DataStructureException;
+import data_structure.Field;
+import data_structure.GCLogDataStructure;
+
 
 public class XlsDisplayer implements LogDisplayer
 {

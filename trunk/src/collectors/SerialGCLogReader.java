@@ -1,32 +1,24 @@
-package src.collectors;
+package collectors;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import src.data_structure.DataStructureException;
-import src.data_structure.Field;
-import src.data_structure.GCLogDataStructure;
+import data_structure.DataStructureException;
+import data_structure.Field;
+import data_structure.GCLogDataStructure;
 
 public class SerialGCLogReader implements CollectorLogReader
 {
-	private static Pattern		pattern;
-	private GCLogDataStructure	dataStructure	= new GCLogDataStructure();
-
-	public SerialGCLogReader()
-	{
-		initializePattern();
-		try
-		{
-			createStructure();
-		}
-		catch ( DataStructureException e )
-		{
-			e.printStackTrace();
-		}
-	}
+	protected Pattern							pattern;
+	private GCLogDataStructure					dataStructure		= new GCLogDataStructure();
+	protected String							matchString			= "DefNew";
+	protected String							collectorName		= "Serial";
+	protected boolean							isTotalHeapPrinted	= true;
+	protected LinkedHashMap< String, String >	matchOrderMap		= CollectorConstants.FIELD_MATCHORDER_MAP;
 
 	private Field createField( String fieldName )
 	{
@@ -35,10 +27,10 @@ public class SerialGCLogReader implements CollectorLogReader
 		return f;
 	}
 
-	private void createStructure() throws DataStructureException
+	protected void createStructure() throws DataStructureException
 	{
 
-		for ( Map.Entry< String, String > e : CollectorConstants.FIELD_MATCHORDER_MAP.entrySet() )
+		for ( Map.Entry< String, String > e : matchOrderMap.entrySet() )
 		{
 			String fieldName = e.getKey();
 			String matchOrderNo = e.getValue();
@@ -71,7 +63,7 @@ public class SerialGCLogReader implements CollectorLogReader
 
 	}
 
-	private static void initializePattern()
+	protected void initializePattern()
 	{
 		String pattern1 = "([0-9]*\\.?[0-9]*)";
 		String pattern2 = pattern1 + "[KkMmGgBb]{1}";
@@ -93,7 +85,7 @@ public class SerialGCLogReader implements CollectorLogReader
 	{
 		for ( String str : lines )
 		{
-			if ( str.matches( ".*(DefNew).*" ) )
+			if ( str.matches( ".*(" + matchString + ").*" ) )
 				return true;
 		}
 
@@ -121,7 +113,7 @@ public class SerialGCLogReader implements CollectorLogReader
 							f.setValue( "Minor" );
 						else
 							f.setValue( "Major" );
-					else if ( matchIndex == 2 )
+					else if ( matchIndex == 2 && isTotalHeapPrinted )
 						if ( matcher.group( matchIndex ).equals( "GC" ) )
 							f.setValue( "No" );
 						else
@@ -141,7 +133,22 @@ public class SerialGCLogReader implements CollectorLogReader
 	@Override
 	public String getCollectorName()
 	{
-		return "Serial Collector";
+		return collectorName;
+	}
+
+	@Override
+	public void initialize()
+	{
+		initializePattern();
+		try
+		{
+			createStructure();
+		}
+		catch ( DataStructureException e )
+		{
+			e.printStackTrace();
+		}
+
 	}
 
 }
