@@ -73,6 +73,26 @@ public class Field
 		return f;
 	}
 
+	public Field getCopy( boolean parFlag )
+	{
+		if ( !parFlag )
+		{
+			Field f = new Field();
+			f.setFieldName( getFieldName() );
+
+			for ( Field subField : this.subFields )
+			{
+				Field newSubField = subField.getCopy( false );
+				f.addSubField( newSubField );
+			}
+
+			return f;
+		}
+		else
+			return getCopy();
+
+	}
+
 	public int getMaxSubFieldDepth()
 	{
 		return getMaxSubFieldDepth( this );
@@ -112,5 +132,15 @@ public class Field
 
 		return width;
 
+	}
+
+	public void resetParameter()
+	{
+		parameters = new ArrayList< String >();
+	}
+
+	public int getParameterSize()
+	{
+		return parameters.size();
 	}
 }

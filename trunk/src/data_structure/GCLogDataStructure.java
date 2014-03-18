@@ -74,6 +74,26 @@ public class GCLogDataStructure
 
 	}
 
+	public Field createNewRecord( Field f, boolean includeFl )
+	{
+		Field record = new Field();
+
+		for ( Field subField : f.getSubFields() )
+		{
+			Field newField = subField.getCopy();
+			record.addSubField( newField );
+		}
+
+		if ( includeFl )
+		{
+			this.recordsList.add( record );
+			this.currentRecord = record;
+		}
+
+		return record;
+
+	}
+
 	public void setValue( String fieldName, String value ) throws DataStructureException
 	{
 		for ( Field f : currentRecord.getSubFields() )
