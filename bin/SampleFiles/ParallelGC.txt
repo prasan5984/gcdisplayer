@@ -1,0 +1,24 @@
+0.083: [GC [PSYoungGen: 1536K->256K(1792K)] 1536K->1494K(3072K), 0.0044852 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.087: [Full GC [PSYoungGen: 256K->211K(1792K)] [PSOldGen: 1238K->1279K(4096K)] 1494K->1491K(5888K) [PSPermGen: 1728K->1728K(12288K)], 0.0064541 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.096: [GC [PSYoungGen: 1536K->256K(1792K)] 2815K->2831K(5888K), 0.0056340 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+0.103: [GC-- [PSYoungGen: 1792K->1792K(1792K)] 4367K->5887K(5888K), 0.0056300 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.109: [Full GC [PSYoungGen: 1792K->304K(1792K)] [PSOldGen: 4095K->4095K(4096K)] 5887K->4400K(5888K) [PSPermGen: 1734K->1734K(12288K)], 0.0104917 secs] [Times: user=0.01 sys=0.00, real=0.01 secs] 
+0.121: [Full GC [PSYoungGen: 1536K->1536K(1792K)] [PSOldGen: 4095K->4095K(4096K)] 5631K->5631K(5888K) [PSPermGen: 1734K->1734K(12288K)], 0.0120837 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+0.133: [Full GC [PSYoungGen: 1536K->1291K(1792K)] [PSOldGen: 4095K->4095K(4096K)] 5631K->5387K(5888K) [PSPermGen: 1734K->1728K(12288K)], 0.0162335 secs] [Times: user=0.01 sys=0.00, real=0.02 secs] 
+0.149: [Full GC [PSYoungGen: 1536K->1536K(1792K)] [PSOldGen: 4095K->4095K(4096K)] 5631K->5631K(5888K) [PSPermGen: 1728K->1728K(12288K)], 0.0117845 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+0.161: [Full GC [PSYoungGen: 1536K->1530K(1792K)] [PSOldGen: 4095K->4095K(4096K)] 5631K->5626K(5888K) [PSPermGen: 1728K->1728K(12288K)], 0.0107890 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.172: [Full GC [PSYoungGen: 1536K->1536K(1792K)] [PSOldGen: 4095K->4095K(4096K)] 5631K->5631K(5888K) [PSPermGen: 1728K->1728K(12288K)], 0.0109662 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+0.183: [Full GC [PSYoungGen: 1536K->1535K(1792K)] [PSOldGen: 4095K->4095K(4096K)] 5631K->5631K(5888K) [PSPermGen: 1728K->1728K(12288K)], 0.0107349 secs] [Times: user=0.01 sys=0.00, real=0.02 secs] 
+0.194: [Full GC [PSYoungGen: 1536K->1536K(1792K)] [PSOldGen: 4095K->4095K(4096K)] 5631K->5631K(5888K) [PSPermGen: 1728K->1728K(12288K)], 0.0110506 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+0.205: [Full GC [PSYoungGen: 1536K->1536K(1792K)] [PSOldGen: 4096K->4096K(4096K)] 5632K->5632K(5888K) [PSPermGen: 1728K->1728K(12288K)], 0.0107825 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.216: [Full GC [PSYoungGen: 1536K->1536K(1792K)] [PSOldGen: 4096K->4096K(4096K)] 5632K->5632K(5888K) [PSPermGen: 1728K->1728K(12288K)], 0.0108138 secs] [Times: user=0.02 sys=0.00, real=0.01 secs] 
+0.227: [Full GC [PSYoungGen: 1536K->0K(1792K)] [PSOldGen: 4096K->108K(3136K)] 5632K->108K(4928K) [PSPermGen: 1728K->1728K(12288K)], 0.0061026 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+Heap
+ PSYoungGen      total 1792K, used 49K [0x0d400000, 0x0d600000, 0x0d600000)
+  eden space 1536K, 3% used [0x0d400000,0x0d40c4e0,0x0d580000)
+  from space 256K, 0% used [0x0d5c0000,0x0d5c0000,0x0d600000)
+  to   space 256K, 0% used [0x0d580000,0x0d580000,0x0d5c0000)
+ PSOldGen        total 3136K, used 108K [0x0d000000, 0x0d310000, 0x0d400000)
+  object space 3136K, 3% used [0x0d000000,0x0d01b258,0x0d310000)
+ PSPermGen       total 12288K, used 1734K [0x09000000, 0x09c00000, 0x0d000000)
+  object space 12288K, 14% used [0x09000000,0x091b1b98,0x09c00000)

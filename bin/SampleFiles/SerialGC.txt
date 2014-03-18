@@ -1,0 +1,20 @@
+0.041: [GC 0.042: [DefNew: 896K->64K(960K), 0.0026746 secs] 896K->803K(1984K), 0.0028450 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.046: [GC 0.046: [DefNew: 960K->64K(960K), 0.0020452 secs]0.049: [Tenured: 1601K->1663K(1664K), 0.0120164 secs] 1699K->1665K(2624K), [Perm : 31K->31K(12288K)], 0.0142896 secs] [Times: user=0.01 sys=0.00, real=0.02 secs] 
+0.063: [GC 0.063: [DefNew: 1152K->128K(1280K), 0.0046091 secs] 2815K->2783K(4056K), 0.0047266 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.070: [GC 0.070: [DefNew: 1280K->127K(1280K), 0.0022760 secs]0.072: [Tenured: 3776K->3799K(3800K), 0.0117668 secs] 3935K->3904K(5080K), [Perm : 31K->31K(12288K)], 0.0142920 secs] [Times: user=0.00 sys=0.02, real=0.01 secs] 
+0.086: [GC 0.086: [DefNew: 1664K->1664K(1856K), 0.0000149 secs]0.086: [Tenured: 3799K->4095K(4096K), 0.0141225 secs] 5463K->5426K(5952K), [Perm : 31K->31K(12288K)], 0.0143123 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.101: [Full GC 0.101: [Tenured: 4095K->4095K(4096K), 0.0175241 secs] 5951K->5923K(5952K), [Perm : 31K->26K(12288K)], 0.0176562 secs] [Times: user=0.02 sys=0.00, real=0.01 secs] 
+0.119: [Full GC 0.119: [Tenured: 4095K->4095K(4096K), 0.0132630 secs] 5951K->5951K(5952K), [Perm : 26K->26K(12288K)], 0.0133660 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+0.133: [Full GC 0.133: [Tenured: 4095K->4095K(4096K), 0.0130334 secs] 5951K->5951K(5952K), [Perm : 26K->26K(12288K)], 0.0131369 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.146: [Full GC 0.146: [Tenured: 4095K->108K(4096K), 0.0088031 secs] 5951K->108K(5952K), [Perm : 26K->26K(12288K)], 0.0089117 secs] [Times: user=0.01 sys=0.00, real=0.02 secs] 
+Heap
+ def new generation   total 1856K, used 844K [0x324c0000, 0x326c0000, 0x326c0000)
+  eden space 1664K,  50% used [0x324c0000, 0x325931d8, 0x32660000)
+  from space 192K,   0% used [0x32660000, 0x32660000, 0x32690000)
+  to   space 192K,   0% used [0x32690000, 0x32690000, 0x326c0000)
+ tenured generation   total 4096K, used 108K [0x326c0000, 0x32ac0000, 0x32ac0000)
+   the space 4096K,   2% used [0x326c0000, 0x326db320, 0x326db400, 0x32ac0000)
+ compacting perm gen  total 12288K, used 26K [0x32ac0000, 0x336c0000, 0x36ac0000)
+   the space 12288K,   0% used [0x32ac0000, 0x32ac6910, 0x32ac6a00, 0x336c0000)
+    ro space 10240K,  54% used [0x36ac0000, 0x3703f548, 0x3703f600, 0x374c0000)
+    rw space 12288K,  55% used [0x374c0000, 0x37b65140, 0x37b65200, 0x380c0000)

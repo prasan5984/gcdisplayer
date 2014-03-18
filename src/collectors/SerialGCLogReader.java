@@ -14,11 +14,12 @@ import data_structure.GCLogDataStructure;
 public class SerialGCLogReader implements CollectorLogReader
 {
 	protected Pattern							pattern;
-	private GCLogDataStructure					dataStructure		= new GCLogDataStructure();
+	protected GCLogDataStructure				dataStructure		= new GCLogDataStructure();
 	protected String							matchString			= "DefNew";
 	protected String							collectorName		= "Serial";
 	protected boolean							isTotalHeapPrinted	= true;
 	protected LinkedHashMap< String, String >	matchOrderMap		= CollectorConstants.FIELD_MATCHORDER_MAP;
+	protected Matcher							matcher;
 
 	private Field createField( String fieldName )
 	{
@@ -29,7 +30,6 @@ public class SerialGCLogReader implements CollectorLogReader
 
 	protected void createStructure() throws DataStructureException
 	{
-
 		for ( Map.Entry< String, String > e : matchOrderMap.entrySet() )
 		{
 			String fieldName = e.getKey();
@@ -40,7 +40,6 @@ public class SerialGCLogReader implements CollectorLogReader
 
 			if ( CollectorConstants.SUB_FIELDS.containsKey( fieldName ) )
 			{
-
 				HashMap< String, String > subFieldMap = CollectorConstants.SUB_FIELDS.get( fieldName );
 
 				for ( Map.Entry< String, String > e1 : subFieldMap.entrySet() )
@@ -52,15 +51,11 @@ public class SerialGCLogReader implements CollectorLogReader
 
 				}
 			}
-
 			dataStructure.addField( GCLogDataStructure.HEADER_FIELD, f );
-
 		}
-
 		Field f = createField( "Collector Name" );
-		f.setValue( getCollectorName() );
+		f.setValue( getCollectorNameDetails() );
 		dataStructure.addField( GCLogDataStructure.FILE_LEVEL_FIELDS, f );
-
 	}
 
 	protected void initializePattern()
@@ -69,7 +64,7 @@ public class SerialGCLogReader implements CollectorLogReader
 		String pattern2 = pattern1 + "[KkMmGgBb]{1}";
 		String pattern3 = pattern2 + "->" + pattern2 + "\\(" + pattern2 + "\\)";
 		String pattern4 = pattern1 + " *" + "secs";
-		String pattern5 = "(\\[DefNew *: *" + pattern3 + ", *" + pattern4 + "\\])";
+		String pattern5 = "(\\[" + matchString + " *: *" + pattern3 + ", *" + pattern4 + "\\])";
 		String pattern6 = "(\\[Tenured *: *" + pattern3 + ", *" + pattern4 + "\\])";
 		String pattern9 = "(\\[Perm *: *" + pattern3 + "\\])";
 		String pattern7 = pattern1 + ": *";
@@ -84,19 +79,14 @@ public class SerialGCLogReader implements CollectorLogReader
 	public boolean checkIfMatches( List< String > lines )
 	{
 		for ( String str : lines )
-		{
 			if ( str.matches( ".*(" + matchString + ").*" ) )
 				return true;
-		}
-
 		return false;
 	}
 
 	public void setValues( String line )
 	{
-		Matcher matcher = pattern.matcher( line );
-
-		if ( matcher.matches() )
+		if ( checkIfMatches( line ) )
 		{
 			Field record = dataStructure.createNewRecord();
 
@@ -131,9 +121,9 @@ public class SerialGCLogReader implements CollectorLogReader
 	}
 
 	@Override
-	public String getCollectorName()
+	public String getCollectorNameDetails()
 	{
-		return collectorName;
+		return getCollectorName();
 	}
 
 	@Override
@@ -149,6 +139,26 @@ public class SerialGCLogReader implements CollectorLogReader
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public boolean checkIfMatches( String line )
+	{
+		this.matcher = pattern.matcher( line );
+		return matcher.matches();
+	}
+
+	@Override
+	public void setMatchString( String matchString )
+	{
+		//this.matchString = matchString;
+
+	}
+
+	@Override
+	public String getCollectorName()
+	{
+		return collectorName;
 	}
 
 }
